@@ -1,6 +1,6 @@
 {
   "name": "open-gitup-here",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Open the current project in the GitUp app.",
   "activationCommands": {
     "atom-workspace": [
