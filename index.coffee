@@ -1,14 +1,3 @@
-###
- * Open Terminal Here - Atom package
- * https://github.com/blueimp/atom-open-terminal-here
- *
- * Copyright 2015, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * https://opensource.org/licenses/MIT
-###
-
 getActiveFilePath = () ->
   document.querySelector('.tree-view .selected')?.getPath?() ||
     atom.workspace.getActivePaneItem()?.buffer?.file?.path
@@ -33,25 +22,16 @@ filterProcessEnv = () ->
   env
 
 open = (filepath) ->
-  if not filepath
-    dirpath = getRootDir()
-  else
-    fs = require('fs')
-    if fs.lstatSync(fs.realpathSync(filepath)).isFile()
-      dirpath = require('path').dirname(filepath)
-    else
-      dirpath = filepath
+  dirpath = getRootDir()
   return if not dirpath
-  command = atom.config.get 'open-terminal-here.command'
+  command = atom.config.get 'open-gitup-here.command'
   require('child_process').exec command, cwd: dirpath, env: filterProcessEnv()
 
 switch require('os').platform()
   when 'darwin'
-    defaultCommand = 'open -a Terminal.app "$PWD"'
-  when 'win32'
-    defaultCommand = 'start /D "%cd%" cmd'
+    defaultCommand = 'open -b co.gitup.mac "$PWD"'
   else
-    defaultCommand = 'x-terminal-emulator'
+    throw new Error("Sorry, GitUp is only supported on macOS.")
 
 module.exports =
   config:
@@ -59,11 +39,7 @@ module.exports =
       type: 'string'
       default: defaultCommand
   activate: ->
-    atom.commands.add '.tree-view .selected, atom-text-editor, atom-workspace',
-      'open-terminal-here:open': (event) ->
-        event.stopImmediatePropagation()
-        open @getPath?() || @getModel?().getPath?() || getActiveFilePath()
     atom.commands.add 'atom-workspace',
-      'open-terminal-here:open-root': (event) ->
+      'open-gitup-here:open-root': (event) ->
         event.stopImmediatePropagation()
         open()

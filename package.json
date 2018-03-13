@@ -1,16 +1,13 @@
 {
-  "name": "open-terminal-here",
-  "version": "2.3.1",
-  "description": "Open the Terminal (OSX, Linux) or Command Prompt (Windows) in the given directory via context menu or keyboard shortcut.",
+  "name": "open-gitup-here",
+  "version": "0.0.0",
+  "description": "Open the GitUp app via context menu or keyboard shortcut.",
   "activationCommands": {
-    ".tree-view .selected, atom-text-editor, atom-workspace": [
-      "open-terminal-here:open"
-    ],
     "atom-workspace": [
-      "open-terminal-here:open-root"
+      "open-gitup-here:open-root"
     ]
   },
-  "repository": "https://github.com/blueimp/atom-open-terminal-here",
+  "repository": "https://github.com/szhu/atom-open-gitup-here.git",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0"
