@@ -1,6 +1,6 @@
 {
   "name": "open-gitup-here",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Open the GitUp app via context menu or keyboard shortcut.",
   "activationCommands": {
     "atom-workspace": [
